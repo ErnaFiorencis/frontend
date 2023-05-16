@@ -32,6 +32,8 @@ function animateZone(){
 
 let numberOfQuestions = 0
 let question_data
+
+
 function getQuestions(){
     numberOfQuestions += 1
     document.getElementById("resultBox").style.display = "none"
@@ -64,6 +66,7 @@ function getQuestions(){
     document.getElementById("question").style.display = "block"
     document.getElementById("border").style.display = "block"
 
+
 })
 
 document.getElementById("nextQuestion").addEventListener('click', () =>{
@@ -77,6 +80,10 @@ document.getElementById("nextQuestion").addEventListener('click', () =>{
 })
 
 function closeZone(){
+    document.getElementById("up").style.display  ="flex"
+    document.getElementById("down").style.display  ="flex"
+    document.getElementById("left").style.display  ="flex"
+    document.getElementById("right").style.display  ="flex"
     document.getElementById("startBox").style.display = "none"
     document.getElementById("choseAnswer").style.display = "none"
     document.getElementById("question").style.display = "none"
@@ -95,6 +102,11 @@ function closeZone(){
 document.getElementById("cancle").addEventListener('click', () =>{
     closeZone()
 })
+document.getElementById("cancle").addEventListener('touchstart', () =>{
+    //keys.space.pressed = false
+    closeZone()
+    
+}, false)
 document.getElementById("end").addEventListener('click', () =>{
     closeZone()
 })
