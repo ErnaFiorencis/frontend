@@ -24,15 +24,57 @@
     }
 </style>
 </head>
+
+
 <div style="display: inline-block; position: relative;">
     <div style="background-color: black; position: absolute; top: 0; bottom: 0; right: 0; left: 0; opacity: 0; pointer-events: none;"></div>
     <div id="sideBarDisplay"style="display: flex;">
-    <canvas></canvas>
+    <canvas id="canvas"></canvas>
+    <div id="up" style="padding: 20px;background-color: rgb(184, 121, 123);
+    color: aqua;
+    display: block;
+    position: absolute;
+    bottom: 150;
+    right: 15;
+    height: 80;
+    width: 65;"
+>UP</div>
+<div id="right" style="padding: 20px;background-color: rgb(184, 121, 123);
+color: aqua;
+display: block;
+position: absolute;
+bottom: 40;
+    right: 75;
+    height: 80;
+    width: 65;"
+>RIGHT</div>
+<div id="down"style="padding: 20px;background-color: rgb(184, 121, 123);
+color: aqua;
+display: block;
+position: absolute;
+bottom: 40;
+left: 75;
+height: 80;
+width: 65;"
+>DOWN</div>
+<div  id= "left"style="padding: 20px;background-color: rgb(184, 121, 123);
+color: aqua;
+display: block;
+position: absolute;
+bottom: 150;
+left: 15;
+height: 80;
+width: 65;"
+>LEFT</div>
+
+
+
     <div id="sideBar"style="
     display: block;
     background-color: black;
     width: 185px;
     border-left: 2px solid black;"><a id="linkHome" href="home.html" style="color: rgb(187, 241, 225);">POCETNA STRANICA</a> <button id="sideBarButton" style="width: 100%; height: 30px;">OTVORI</button>
+    <button>ZNAKOVI ZA KRETANJE</button>
     <div id="sideBarBox" style="display: none; padding: 5px;">
         <div style="display: none;" id="userInfo">
         <p id="username">username</p>
