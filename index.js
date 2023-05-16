@@ -352,7 +352,7 @@ window.addEventListener('keyup', (e) => {
 
 // Add event listener for touchstart, touchmove, and touchend
 document.addEventListener('touchstart', handleTouchStart, false);
-document.addEventListener('touchmove', handleTouchMove, false);
+document.addEventListener('touchmove', handleTouchMove, { passive: false });
 document.addEventListener('touchend', handleTouchEnd, false);
 
 // Variables to track touch coordinates
@@ -365,6 +365,10 @@ const SWIPE_VERTICAL_THRESHOLD = 30; // Minimum vertical distance required for a
 
 // Function to handle touchstart event
 function handleTouchStart(event) {
+    keys.s.pressed = false
+    keys.w.pressed = false
+    keys.a.pressed = false
+    keys.d.pressed = false
   const touch = event.touches[0];
   touchStartX = touch.clientX;
   touchStartY = touch.clientY;
@@ -390,19 +394,34 @@ function handleTouchEnd(event) {
     // Horizontal swipe detected
     if (touchDistanceX > 0) {
       // Right swipe (corresponds to "D" key)
-      performAction('keydown', 'd');
+      //performAction('keydown', 'd');
+      console.log("d")
+      keys.d.pressed = true
+      lastKey = 'd'
     } else {
       // Left swipe (corresponds to "A" key)
-      performAction('keydown', 'd');
+      //performAction('keydown', 'd');
+      console.log("a")
+      keys.a.pressed = true
+      lastKey = 'a'
     }
   } else if (Math.abs(touchDistanceY) > SWIPE_THRESHOLD) {
     // Vertical swipe detected
     if (touchDistanceY > 0) {
       // Down swipe (corresponds to "S" key)
-      performAction('keydown', 's');
+      //performAction('keydown', 's');
+      console.log("s")
+      keys.s.pressed = true
+      lastKey = 's'
     } else {
       // Up swipe (corresponds to "W" key)
-      performAction('keydown', 'w');
+      //performAction('keydown', 'w');
+      keys.w.pressed = true
+      lastKey = 'w'
+      console.log("w")
+   
+
     }
   }
 }
+
