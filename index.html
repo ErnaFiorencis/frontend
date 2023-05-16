@@ -1,0 +1,171 @@
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet">
+<style>
+    * {
+        font-family: 'Electrolize', sans-serif;
+    }
+    body {
+        background-color: black;
+        
+    }
+    button{
+        cursor: pointer;
+    }
+
+    #start:hover, #end:hover, #cancle:hover{
+        background-color: rgb(233, 224, 213);
+        cursor: pointer;
+    }
+    #nextQuestion:hover{
+        background-color: rgba(240, 234, 234, 0.475);
+        cursor: pointer;
+    }
+</style>
+</head>
+<div style="display: inline-block; position: relative;">
+    <div style="background-color: black; position: absolute; top: 0; bottom: 0; right: 0; left: 0; opacity: 0; pointer-events: none;"></div>
+    <div id="sideBarDisplay"style="display: flex;">
+    <canvas></canvas>
+    <div id="sideBar"style="
+    display: block;
+    background-color: black;
+    width: 185px;
+    border-left: 2px solid black;"><a id="linkHome" href="home.html" style="color: rgb(187, 241, 225);">POCETNA STRANICA</a> <button id="sideBarButton" style="width: 100%; height: 30px;">OTVORI</button>
+    <div id="sideBarBox" style="display: none; padding: 5px;">
+        <div style="display: none;" id="userInfo">
+        <p id="username">username</p>
+        <button id="logout" >log out</button>
+        <hr>
+        <p id="level">level</p>
+        <hr>
+        <progress id="progres" value="32" max="100"> 32% </progress>
+        </div>
+        <div id="generalInfo">
+            <p>odaberi podrucja s kojima ces igrati i njihove tezine (od 1 - 3): </p>
+            <hr>
+                <button id="z">zbrajanje</button> <input type="checkbox" id="z1" name="z" value="1"><input type="checkbox" id="z2" name="z" value="2"><input type="checkbox" id="z3" name="z" value="3">
+                <button id="o">oduzimanje</button> <input type="checkbox" id="o1" name="o" value="1"><input type="checkbox" id="o2" name="o" value="2"><input type="checkbox" id="o3" name="o" value="3">
+                <button id="m">mnozenje</button> <input type="checkbox" id="m1" name="m" value="1"><input type="checkbox" id="m2" name="m" value="2"><input type="checkbox" id="m3" name="m" value="3">
+                <button id="d">djeljenje</button> <input type="checkbox" id="d1" name="d" value="1"><input type="checkbox" id="d2" name="d" value="2"><input type="checkbox" id="d3" name="d" value="3">
+                <button id="r">razlomci</button> <input type="checkbox" id="r1" name="r" value="1"><input type="checkbox" id="r2" name="r" value="2"><input type="checkbox" id="r3" name="r" value="3">
+                <button id="p">postotci</button> <input type="checkbox" id="p1" name="p" value="1"><input type="checkbox" id="p2" name="p" value="2"><input type="checkbox" id="p3" name="p" value="3">
+                <button id="g">geometrija</button> <input type="checkbox" id="g1" name="g" value="1"><input type="checkbox" id="g2" name="g" value="2"><input type="checkbox" id="g3" name="g" value="3">
+                <hr>
+                <button id="submitTypes">Spremi postavke podrucja i tezina!</button>
+            <hr>
+            <button id="info">Kako igrati?</button>
+
+        </div>
+    </div>
+    </div>
+</div>
+   
+
+    <div id="cancle" style="
+    background-color: rgb(184, 121, 123);
+    position: absolute;
+    bottom: 530;
+    left: 800;
+    right: 20;
+    height: 30;
+    display: none;
+    text-align: center;
+    padding: 2px
+    "> NAZAD U SVIJET</div>
+
+
+
+
+    <div id="question" style="    
+    background-color: rgb(224, 192, 87);
+    height: 260;
+    position: absolute;
+    bottom: 250;
+    left: 580;
+    right: 20;
+    display: none;
+    border: 4px black solid">
+
+    <h1 id="question-text"style="
+        text-align: center;
+    ">PITANJE: koliko je 2 * 2 akxoeode doedjoejfoefohs kwsojwosby </h1>
+    </div>
+
+    <div id="border" style="
+    height: 190;
+    position: absolute;
+    bottom: 50;
+    left: 580;
+    right: 20;
+    border: 4px black solid;
+    display: none;
+
+    ">
+    <div 
+    id="resultBox"
+    style="
+    position: absolute;
+    top: 0; right: 0; left: 0; bottom: 0;
+    background-color: aliceblue;
+    padding: 15px;
+    display: none;
+    "><p id="answerResult">tovno/netocno</p>  <p id="answerInfo"></p><p id="nextQuestion" style="border: 2px solid black; text-align: center;">dalje</p></div>
+    <div id="choseAnswer" style="
+        height: 100%;
+        display: none;
+        grid-template-columns: 1fr 1fr;
+
+    ">
+        <button id="answ1">odgovor1</button>
+        <button id="answ2">odgovor2</button>
+        <button id="answ3">odgovor3</button>
+        <button id="answ4">odgovor4</button>
+    </div>  
+</div>
+    <div id="endBox"style="
+    position: absolute;
+    bottom: 50;
+    left: 580;
+    right: 20;
+    height: 470;
+    background-color: rgb(224, 192, 87);
+    display: none;
+    text-align: center;
+    border: 2px solid black;
+    ">
+    <p><h1>Pozdrav!</h1> bilo je zabavno!</p>
+    <h1 id="end" style="
+    border: 2px solid black;
+    margin: 5px;
+    
+    ">NAZAD U SVIJET!</h1>
+    </div>
+
+    <div id="startBox"style="
+    position: absolute;
+    bottom: 50;
+    left: 580;
+    right: 20;
+    height: 470;
+    background-color: rgb(224, 192, 87);
+    display: none;
+    text-align: center;
+    border: 2px solid black;
+    ">
+    <p><h1>PRAVILA</h1> papdppdkapdkapd dajdpaj</p>
+    <h1 id="start" style="
+    border: 2px solid black;
+    margin: 5px;
+    ">KRENI!</h1>
+    </div>
+
+    
+
+<script src="data/zoneNovo.js"></script>
+<script src="data/collisionsNovo.js"></script>
+<script src="classes.js"></script>
+<script src="index.js"></script>
+<script src="zones.js"></script>
+<script src="sideBar.js"></script>

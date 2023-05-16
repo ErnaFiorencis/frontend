@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Page</title>
+	<link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        * {
+            font-family: 'Electrolize', sans-serif;
+        }
+    </style>
+</head>
+<body>
+	<div class="home-container">
+		<img src="./img/rabbit.png" alt="" class="icon">
+		<a href="home.html" class="home">POCETNA STRANICA</a>
+	</div>
+
+	
+	<div class="login-box">
+		<h1 class="naslov">Registriraj se</h1>
+		<form id="register">
+			<label for="username">Ime</label>
+			<input type="text" id="username" name="username" required>
+            <label for="username">Email</label>
+			<input type="text" id="email" name="email" required>
+			<label for="password">Zaporka</label>
+			<input type="password" id="password" name="password" required>
+			<input type="submit" id="submitLogin" value="Predaj">
+		</form>
+		<p>Vec imas korisnicki racun? <a href="login.html">Prijavi se ovdje</a></p>
+	</div>
+</body>
+</html>
+
+<script src="register.js"></script>

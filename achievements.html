@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet">
+<style>
+    h1, h2{
+        font-family: 'Electrolize', sans-serif;
+        margin: 20px;
+    }
+    hr{
+        color: rgb(192,212,112);;
+    }
+    .home-container{
+        font-family: 'Electrolize', sans-serif;
+	display: flex;
+	align-items: center;
+}
+
+.icon{
+	width: 40px;
+	height: auto;
+}
+
+a, h2, p{
+    color:  rgb(155,212,195);
+}
+h1 {
+    color:  rgb(192,212,112);
+}
+</style>
+</head>
+<body style="background-color: rgb(25, 31, 39); ">
+    <div class="home-container">
+		<img src="./img/rabbit.png" alt="" class="icon">
+		<a href="home.html" class="home">POCETNA STRANICA</a>
+	</div>
+    <hr>
+    <h1>Prati svoje uspjehe i napredak!</h1>
+    <h2>user: </h2>
+    <h2>bodovi: </h2>
+    <h2>level: </h2>
+    <hr>
+    <h1>Postignuca: </h1>
+    <div id="achContainer" style="display: grid; grid-template-columns: repeat(6, 1fr);">
+    </div>
+</body>
+</html>
+<script src="achievements.js"></script>

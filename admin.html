@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="admin.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="logout">LOGOUT</button>
+    <h1 class="naslov">Dodaj pitanja</h1>
+    <form id="questions">
+        question_text VARCHAR(255) NOT NULL,
+        answer_options VARCHAR(255) NOT NULL,
+    correct_answer VARCHAR(255) NOT NULL,
+        difficulty_level INT NOT NULL,
+    Category VALID_CATEGORY,
+    PLACE VALID_PLACE
+    
+        <label for="question">Tekst Pitanja</label>
+        <input type="text" id="question" name="question" required>
+        <label for="answer_options">Ponuđeni odgovori</label>
+        <input type="password" id="password" name="password" required>
+        <input type="submit" id="submitLogin" value="Predaj">
+    </form>
+</body>
+</html>
