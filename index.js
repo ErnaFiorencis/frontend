@@ -186,6 +186,10 @@ function animate(){
             z.initiated = true
             //console.log(zone.initiated)
             window.cancelAnimationFrame(animationId)
+            document.getElementById("up").style.display  ="none"
+            document.getElementById("down").style.display  ="none"
+            document.getElementById("left").style.display  ="none"
+            document.getElementById("right").style.display  ="none"
             document.getElementById("startBox").style.display = "block"
             document.getElementById("cancle").style.display = "block"
             document.getElementById("sideBarDisplay").style.display = "block"
@@ -352,95 +356,39 @@ window.addEventListener('keyup', (e) => {
     
 })
 
-// Add event listener for touchstart, touchmove, and touchend
-document.getElementById("canvas").addEventListener('touchstart', handleTouchStart, false);
-document.getElementById("canvas").addEventListener('touchmove', handleTouchMove, { passive: false });
-document.getElementById("canvas").addEventListener('touchend', handleTouchEnd, false);
 
-
-// Variables to track touch coordinates
-let touchStartX = 0;
-let touchStartY = 0;
-
-// Constants to define swipe threshold values (adjust as needed)
-const SWIPE_THRESHOLD = 50; // Minimum distance required for a swipe
-const SWIPE_VERTICAL_THRESHOLD = 30; // Minimum vertical distance required for a vertical swipe
-
-// Function to handle touchstart event
-function handleTouchStart(event) {
-
-        keys.s.pressed = false
-        keys.w.pressed = false
-        keys.a.pressed = false
-        keys.d.pressed = false
-        keys.space.pressed = true
-        lastKey = "space"
-
-  const touch = event.touches[0];
-  touchStartX = touch.clientX;
-  touchStartY = touch.clientY;
-}
-
-// Function to handle touchmove event
-function handleTouchMove(event) {
-  event.preventDefault(); // Prevent scrolling while swiping
-}
-
-// Function to handle touchend event
-function handleTouchEnd(event) {
-  const touch = event.changedTouches[0];
-  const touchEndX = touch.clientX;
-  const touchEndY = touch.clientY;
-
-  // Calculate touch distance and direction
-  const touchDistanceX = touchEndX - touchStartX;
-  const touchDistanceY = touchEndY - touchStartY;
-
-  // Determine the gesture type based on touch distance and direction
-  if (Math.abs(touchDistanceX) > SWIPE_THRESHOLD) {
-    // Horizontal swipe detected
-    if (touchDistanceX > 0) {
-      // Right swipe (corresponds to "D" key)
-      //performAction('keydown', 'd');
-      console.log("d")
-      keys.d.pressed = true
-      lastKey = 'd'
-    } else {
-      // Left swipe (corresponds to "A" key)
-      //performAction('keydown', 'd');
-      console.log("a")
-      console.log("WHATT")
-      keys.a.pressed = true
-      lastKey = 'a'
+async function is_touch_enabled() {
+    try{
+        document.createEvent("TouchEvent")
+        return true
     }
-  } else if (Math.abs(touchDistanceY) > SWIPE_THRESHOLD) {
-    // Vertical swipe detected
-    if (touchDistanceY > 0) {
-      // Down swipe (corresponds to "S" key)
-      //performAction('keydown', 's');
-      console.log("s")
-      keys.s.pressed = true
-      lastKey = 's'
-    } else {
-      // Up swipe (corresponds to "W" key)
-      //performAction('keydown', 'w');
-      keys.w.pressed = true
-      lastKey = 'w'
-      console.log("w")
-   
-
+    catch(e) {
+        return false
     }
-  }
 }
 
-document.getElementById("up").addEventListener("touchstart", (e)=>{ keys.w.pressed = true; lastKey = 'w'}, false)
-document.getElementById("up").addEventListener("touchend", ()=>{ keys.w.pressed =false}, false)
+is_touch_enabled().then(e => {
+    if(e){
+        console.log(e)
+        document.getElementById("canvas").addEventListener("touchstart", (e)=>{ keys.space.pressed = true; lastKey = 'space'}, false)
+        document.getElementById("canvas").addEventListener("touchend", ()=>{ keys.space.pressed =false}, false)
+        
+        document.getElementById("up").addEventListener("touchstart", (e)=>{ keys.w.pressed = true; lastKey = 'w'}, false)
+        document.getElementById("up").addEventListener("touchend", ()=>{ keys.w.pressed =false}, false)
+        
+        document.getElementById("down").addEventListener("touchstart", (e)=>{ keys.s.pressed = true; lastKey = 's'}, false)
+        document.getElementById("down").addEventListener("touchend", ()=>{ keys.s.pressed =false}, false)
+        
+        document.getElementById("left").addEventListener("touchstart", (e)=>{ keys.a.pressed = true; lastKey = 'a'}, false)
+        document.getElementById("left").addEventListener("touchend", ()=>{ keys.a.pressed =false}, false)
+        
+        document.getElementById("right").addEventListener("touchstart", (e)=>{ keys.d.pressed = true; lastKey = 'd'}, false)
+        document.getElementById("right").addEventListener("touchend", ()=>{ keys.d.pressed =false}, false)
+    
+        document.getElementById("up").style.display  ="flex"
+        document.getElementById("down").style.display  ="flex"
+        document.getElementById("left").style.display  ="flex"
+        document.getElementById("right").style.display  ="flex"
+    }
+})
 
-document.getElementById("down").addEventListener("touchstart", (e)=>{ keys.s.pressed = true; lastKey = 's'}, false)
-document.getElementById("down").addEventListener("touchend", ()=>{ keys.s.pressed =false}, false)
-
-document.getElementById("left").addEventListener("touchstart", (e)=>{ keys.a.pressed = true; lastKey = 'a'}, false)
-document.getElementById("left").addEventListener("touchend", ()=>{ keys.a.pressed =false}, false)
-
-document.getElementById("right").addEventListener("touchstart", (e)=>{ keys.d.pressed = true; lastKey = 'd'}, false)
-document.getElementById("right").addEventListener("touchend", ()=>{ keys.d.pressed =false}, false)
