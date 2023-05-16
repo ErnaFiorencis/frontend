@@ -349,3 +349,60 @@ window.addEventListener('keyup', (e) => {
     }
     
 })
+
+// Add event listener for touchstart, touchmove, and touchend
+document.addEventListener('touchstart', handleTouchStart, false);
+document.addEventListener('touchmove', handleTouchMove, false);
+document.addEventListener('touchend', handleTouchEnd, false);
+
+// Variables to track touch coordinates
+let touchStartX = 0;
+let touchStartY = 0;
+
+// Constants to define swipe threshold values (adjust as needed)
+const SWIPE_THRESHOLD = 50; // Minimum distance required for a swipe
+const SWIPE_VERTICAL_THRESHOLD = 30; // Minimum vertical distance required for a vertical swipe
+
+// Function to handle touchstart event
+function handleTouchStart(event) {
+  const touch = event.touches[0];
+  touchStartX = touch.clientX;
+  touchStartY = touch.clientY;
+}
+
+// Function to handle touchmove event
+function handleTouchMove(event) {
+  event.preventDefault(); // Prevent scrolling while swiping
+}
+
+// Function to handle touchend event
+function handleTouchEnd(event) {
+  const touch = event.changedTouches[0];
+  const touchEndX = touch.clientX;
+  const touchEndY = touch.clientY;
+
+  // Calculate touch distance and direction
+  const touchDistanceX = touchEndX - touchStartX;
+  const touchDistanceY = touchEndY - touchStartY;
+
+  // Determine the gesture type based on touch distance and direction
+  if (Math.abs(touchDistanceX) > SWIPE_THRESHOLD) {
+    // Horizontal swipe detected
+    if (touchDistanceX > 0) {
+      // Right swipe (corresponds to "D" key)
+      performAction('keydown', 'd');
+    } else {
+      // Left swipe (corresponds to "A" key)
+      performAction('keydown', 'd');
+    }
+  } else if (Math.abs(touchDistanceY) > SWIPE_THRESHOLD) {
+    // Vertical swipe detected
+    if (touchDistanceY > 0) {
+      // Down swipe (corresponds to "S" key)
+      performAction('keydown', 's');
+    } else {
+      // Up swipe (corresponds to "W" key)
+      performAction('keydown', 'w');
+    }
+  }
+}
