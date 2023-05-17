@@ -1,6 +1,17 @@
+async function is_touch_enabled() {
+    try{
+        document.createEvent("TouchEvent")
+        return true
+    }
+    catch(e) {
+        return false
+    }
+}
 
 
 function closeSideBar(){
+    document.getElementById("up").style.right = '15'
+    document.getElementById("right").style.right = '75'
     document.getElementById("linkHome").style.color= "rgb(187, 241, 225)"
     document.getElementById("sideBar").style.backgroundColor = "black"
     document.getElementById("sideBarBox").style.display = "none"
@@ -21,6 +32,9 @@ function openSideBar(){
     document.getElementById("sideBarBox").style.display = "block"
     document.getElementById("linkHome").style.color= "black"
     document.getElementById("sideBarButton").innerHTML = "ZATVORI"
+
+    document.getElementById("up").style.right = '195'
+    document.getElementById("right").style.right = '260'
 }
 
 document.getElementById("sideBarButton").addEventListener("click", () =>{
