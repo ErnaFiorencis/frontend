@@ -12,8 +12,9 @@ const zoneBackground = new Sprite ({
 let zoneAnimationID
 
 function chooseZone(symbol){
+    console.log(symbol)
     symbol = symbol
-    if(symbol == 1075){
+    if(symbol == 113){
         zoneImage.src = './img/pozadina.png'
         place = "bakery"
     }
@@ -78,7 +79,22 @@ document.getElementById("nextQuestion").addEventListener('click', () =>{
         document.getElementById("endBox").style.display = "block"
     }
 })
-
+async function is_touch_enabled() {
+    try{
+        document.createEvent("TouchEvent")
+        return true
+    }
+    catch(e) {
+        return false
+    }
+}
+is_touch_enabled().then(e => {
+    if(e){
+document.getElementById("up").style.display  ="flex"
+document.getElementById("down").style.display  ="flex"
+document.getElementById("left").style.display  ="flex"
+document.getElementById("right").style.display  ="flex"
+    }})
 function closeZone(){
     document.getElementById("up").style.display  ="flex"
     document.getElementById("down").style.display  ="flex"
@@ -177,7 +193,7 @@ function evaluateAnswer(answer){
     
 }
 
-document.querySelectorAll('button').forEach((button) => {
+document.querySelectorAll('button.ques').forEach((button) => {
     button.addEventListener('click', () =>{
         console.log("HHH#H")
         console.log(button.innerHTML)
