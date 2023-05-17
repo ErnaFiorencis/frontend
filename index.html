@@ -33,6 +33,7 @@
     <div id="sideBarDisplay"style="display: flex;">
     <canvas id="canvas"></canvas>
     <div id="up" style="    padding: 20px;
+    background-color: black;
     color: rgb(155,212,195);
     border: white solid 2px;
     align-items: center;
@@ -46,6 +47,7 @@
     width: 65;;"
 ><i style="align-self: center;"class="fa-solid fa-arrow-up fa-2xl"></i></div> 
 <div id="right" style="padding: 20px;    color: rgb(155,212,195);
+background-color: black;
 border: white solid 2px;
 align-items: center;
 display: none;
@@ -91,7 +93,7 @@ width: 65;"
     background-color: black;
     width: 185px;
     border-left: 2px solid black;"><a id="linkHome" href="home.html" style="color: rgb(187, 241, 225);">POCETNA STRANICA</a> <button id="sideBarButton" style="width: 100%; height: 30px;">OTVORI</button>
-    <button>ZNAKOVI ZA KRETANJE</button>
+
     <div id="sideBarBox" style="display: none; padding: 5px;">
         <div style="display: none;" id="userInfo">
         <p id="username">username</p>
@@ -149,7 +151,7 @@ width: 65;"
 
     <h1 id="question-text"style="
         text-align: center;
-    ">PITANJE: koliko je 2 * 2 akxoeode doedjoejfoefohs kwsojwosby </h1>
+    ">PITANJE: koliko je 2 * 2</h1>
     </div>
 
     <div id="border" style="
@@ -177,10 +179,10 @@ width: 65;"
         grid-template-columns: 1fr 1fr;
 
     ">
-        <button id="answ1">odgovor1</button>
-        <button id="answ2">odgovor2</button>
-        <button id="answ3">odgovor3</button>
-        <button id="answ4">odgovor4</button>
+        <button class="ques" id="answ1">odgovor1</button>
+        <button class="ques" id="answ2">odgovor2</button>
+        <button class="ques" id="answ3">odgovor3</button>
+        <button class="ques" id="answ4">odgovor4</button>
     </div>  
 </div>
     <div id="endBox"style="
@@ -213,7 +215,7 @@ width: 65;"
     text-align: center;
     border: 2px solid black;
     ">
-    <p><h1>PRAVILA</h1> papdppdkapdkapd dajdpaj</p>
+    <p><h1>PRAVILA</h1>Pitanje ima 4 ponudena odgovora od kojih je samo jedno točno, odaberi točan odgovor i skupljaj bodove!</p>
     <h1 id="start" style="
     border: 2px solid black;
     margin: 5px;
