@@ -42,7 +42,7 @@ collisionsMap.forEach((row, i) => {
 const zones = []
 zoneMap.forEach((row, i) => {
     row.forEach((symbol, j) => {
-        if(symbol === 1075){
+        if(symbol === 113 || symbol === 175){
             zones.push(new Boundary({
                 position: {
                     x: j * Boundary.width + offset.x,
