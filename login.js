@@ -19,17 +19,21 @@ document.getElementById("login").addEventListener("submit", (event) => {
             document.getElementById("password").value = ""
         }
         else{
-            localStorage.setItem("user", username)
-            fetch("http://localhost:3000/api/v1/students/name/" + localStorage.getItem("user"), {
-                method: "GET",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                }
-            }).then((res) => res.json()).then((data => {
-                localStorage.setItem("category",JSON.stringify(data[0]["category"]))
-            }))
-            window.location.href = "index.html";
+            
+            return res.json()
         }
+    }).then(data => {
+        localStorage.setItem("user", data["token"])
+        /*fetch("http://localhost:3000/api/v1/students/name/" + localStorage.getItem("user"), {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            }
+        }).then((res) => res.json()).then((data => {
+            localStorage.setItem("category",JSON.stringify(data[0]["category"]))
+        }))*/
+        window.location.href = "index.html";
+
     })
 })

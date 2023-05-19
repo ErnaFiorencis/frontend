@@ -2,9 +2,10 @@ const canvas = document.querySelector('canvas')
 
 const c = canvas.getContext('2d')
 
-
-canvas.width = 1074 //1024
-canvas.height = 580 //576
+console.log(window.innerWidth)
+canvas.width = 0.80 * window.innerWidth//1074 //1024
+canvas.height = 0.96* window.innerHeight//580 //576
+console.log(canvas.width)
 
 const collisionsMap = []
 for(let i = 0; i < collisionsNovo.length; i+=64){
@@ -71,7 +72,7 @@ foregroundImage.src = './img/novof2.png'
 const player = new Sprite({
     position: {
         x: canvas.width/2 - playerImage.width/2, 
-        y:canvas.height/2 - playerImage.height/2
+        y: canvas.height/2 - playerImage.height/2
     },
     image: playerImage,
     frames: {max: 4, min: 2}
@@ -150,7 +151,12 @@ function checkLevel(level){
     return true
 }
 
+
 function animate(){
+
+    canvas.width =  0.80 * window.innerWidth//1074 //1024
+    canvas.height = 0.96* window.innerHeight//580 //576
+    
     const animationId = window.requestAnimationFrame(animate)
 
     background.draw()

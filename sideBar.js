@@ -8,6 +8,18 @@ async function is_touch_enabled() {
     }
 }
 
+function logout(){
+    localStorage.clear()
+    document.getElementById("userInfo").style.display = "none" 
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    // Loop through the checkboxes and uncheck them
+    checkboxes.forEach((checkbox) => {
+    checkbox.checked = false;
+    });
+    localStorage.setItem("category", '{"z":["1","2","3"],"o":["1","2","3"],"m":["1","2","3"],"d":["1","2","3"],"r":["1","2","3"],"p":["1","2","3"],"g":["1","2","3"]}')
+    closeSideBar()
+}
+
 
 function closeSideBar(){
     document.getElementById("up").style.right = '15'
@@ -40,17 +52,23 @@ function openSideBar(){
 document.getElementById("sideBarButton").addEventListener("click", () =>{
     if(document.getElementById("sideBarButton").innerHTML === "OTVORI"){
         openSideBar()
-
-
         if(localStorage.getItem("user")){
-            fetch("http://localhost:3000/api/v1/students/name/" + localStorage.getItem("user"), {
+            fetch("http://localhost:3000/api/v1/students/name", {
                 method: "GET",
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
+                    Authorization: 'Bearer ' + localStorage.getItem("user")
                 }
-            }).then((res) => res.json())
-            .then((data => {
+            }).then((res) => {
+                if(res.status != 200){
+                    alert("Tvoja sesija je istekla, nastavi neulogiran ili se ponovno prijavu")
+                    logout()
+                }
+                else{
+                    return res.json()
+                }
+            }).then(data => {
                 console.log(data[0])
                 document.getElementById("username").innerHTML = "user: " + (data[0]["user_name"]).toUpperCase()
                 let level = Math.floor(((Math.sqrt(1 + 8 * parseInt(data[0]["points"]) / 100)) - 1) / 2) + 1
@@ -61,8 +79,14 @@ document.getElementById("sideBarButton").addEventListener("click", () =>{
                 document.getElementById("progres").max = level * 100
                 let cat = data[0]["category"]
                 console.log(cat)
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            // Loop through the checkboxes and uncheck them
+                checkboxes.forEach((checkbox) => {
+                checkbox.checked = false;
+                });
+                Object.keys(cat).forEach((i) => 
+                {
     
-                Object.keys(cat).forEach((i) => {
                     console.log(cat[i])
                     cat[i].forEach(element => {
                         document.getElementById(i + element).checked = true
@@ -70,10 +94,15 @@ document.getElementById("sideBarButton").addEventListener("click", () =>{
                 });
 
                 localStorage.setItem("category",JSON.stringify(cat))
-
-            }))            
+            })
         }
+             
         if(localStorage.getItem("category")){
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            // Loop through the checkboxes and uncheck them
+                checkboxes.forEach((checkbox) => {
+                checkbox.checked = false;
+                });
             let c = JSON.parse(localStorage.getItem("category"))
             
             Object.keys(c).forEach((i) => {
@@ -94,15 +123,7 @@ document.getElementById("sideBarButton").addEventListener("click", () =>{
 })
 
 document.getElementById("logout").addEventListener("click", () => {
-    localStorage.clear()
-    document.getElementById("userInfo").style.display = "none" 
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    // Loop through the checkboxes and uncheck them
-    checkboxes.forEach((checkbox) => {
-    checkbox.checked = false;
-    });
-    localStorage.setItem("category", '{"z":["1","2","3"],"o":["1","2","3"],"m":["1","2","3"],"d":["1","2","3"],"r":["1","2","3"],"p":["1","2","3"],"g":["1","2","3"]}')
-    closeSideBar()
+    logout()
 })
 
 document.getElementById("submitTypes").addEventListener("click", () => {
@@ -119,14 +140,14 @@ document.getElementById("submitTypes").addEventListener("click", () => {
     category = JSON.stringify(category)
     localStorage.setItem("category", category)
     if(localStorage.getItem("user")){
-        user = localStorage.getItem("user")
         fetch("http://localhost:3000/api/v1/students/category/proba", {
             method: "PUT",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
+                Authorization: 'Bearer ' + localStorage.getItem("user")
             },
-            body: JSON.stringify({user, category})
+            body: JSON.stringify({category})
         })
     }
 })

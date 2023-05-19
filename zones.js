@@ -1,4 +1,4 @@
-var place = "bakery"
+var place = ""
 var zoneImage = new Image()
 
 const zoneBackground = new Sprite ({
@@ -12,6 +12,8 @@ const zoneBackground = new Sprite ({
 let zoneAnimationID
 
 function chooseZone(symbol){
+    canvas.width = 1074//0.80 * window.innerWidth//1074 //1024
+    canvas.height = 580//0.96* window.innerHeight//580 //576
     console.log(symbol)
     symbol = symbol
     if(symbol == 113){
@@ -96,10 +98,13 @@ document.getElementById("left").style.display  ="flex"
 document.getElementById("right").style.display  ="flex"
     }})
 function closeZone(){
+    is_touch_enabled().then(e => {
+        if(e){
     document.getElementById("up").style.display  ="flex"
     document.getElementById("down").style.display  ="flex"
     document.getElementById("left").style.display  ="flex"
     document.getElementById("right").style.display  ="flex"
+        }})
     document.getElementById("startBox").style.display = "none"
     document.getElementById("choseAnswer").style.display = "none"
     document.getElementById("question").style.display = "none"
@@ -113,8 +118,14 @@ function closeZone(){
     numberOfQuestions = 0
     z.initiated = false
     z.recently = 100
+    console.log(canvas.width)
+    canvas.width = 0.80 * window.innerWidth//1074 //1024
+    canvas.height = 0.96* window.innerHeight//580 //576
+    console.log("TUUUU")
+    console.log(canvas.width)
     animate()
 }
+
 document.getElementById("cancle").addEventListener('click', () =>{
     closeZone()
 })
