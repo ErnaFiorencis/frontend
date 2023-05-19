@@ -21,7 +21,7 @@ for(let i = 0; i < zonesDataNovo.length; i+=64){
 
 
 const offset = {
-    x: -1350,
+    x: -1250,
     y: -755
 }
 

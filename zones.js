@@ -6,18 +6,29 @@ const zoneBackground = new Sprite ({
         x:0,
         y:0
     },
-    image: zoneImage
+    image: zoneImage,
 })
 
 let zoneAnimationID
 
 function chooseZone(symbol){
-    canvas.width = 1074//0.80 * window.innerWidth//1074 //1024
-    canvas.height = 580//0.96* window.innerHeight//580 //576
+    canvas.style.backgroundColor = 'rgba(104,87,70,255)'
+    canvas.width = 1174//0.80 * window.innerWidth//1074 //1024
+    canvas.height = 600
+    if(window.innerWidth > 1174){
+        canvas.width = 0.9 * window.innerWidth
+        
+    }
+    if(window.innerHeight > 600){
+        canvas.height = 0.97 * window.innerHeight
+    }
+
     console.log(symbol)
     symbol = symbol
     if(symbol == 113){
         zoneImage.src = './img/pozadina.png'
+        zoneImage.style.width = '100px'
+        zoneImage.style.height = '100px'
         place = "bakery"
     }
     else{
