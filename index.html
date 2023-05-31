@@ -1,19 +1,28 @@
 <head>
+
+    <script src="https://kit.fontawesome.com/b6d6b12852.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="https://kit.fontawesome.com/b6d6b12852.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
 <style>
-    * {
-        font-family: 'Electrolize', sans-serif;
-    }
-    body {
+    body{
+        font-family: 'Pangolin', cursive;
         background-color: black;
+    }
+
+    *{
+        font-family: 'Pangolin', cursive;
+    }
+    .setbut{
+        cursor: pointer;
+        margin: 2px;
+        padding: 5px;
+        border: solid 2px rgba(232,207,166);
+        border-radius: 10px;
         
     }
-    button{
-        cursor: pointer;
+    .setbut:hover{
+        background-color: rgb(192,212,112);
     }
 
     #start:hover, #end:hover, #cancle:hover{
@@ -24,14 +33,46 @@
         background-color: rgba(240, 234, 234, 0.475);
         cursor: pointer;
     }
+    progress {
+        background-color: aqua;
+}
+
+
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .top-right {
+      position: absolute;
+      top: 6px;
+      right: 14px;
+      width: 3.5%
+  }
+
+
 </style>
 </head>
+
 
 
 <div style="display: inline-block; position: relative;">
     <div style="background-color: black; position: absolute; top: 0; bottom: 0; right: 0; left: 0; opacity: 0; pointer-events: none;"></div>
     <div id="sideBarDisplay"style="display: flex;">
-    <canvas id="canvas"></canvas>
+    <canvas id="canvas"> </canvas>
+
+    <div class="dialogContainer" id="dialogContainer" style=" 
+    display: none;
+    position: absolute;
+    bottom: 2%;
+    left: 30%;
+    text-align: center;">
+        <img class="top-right" src="./img/x.png" id="exitDialog" style="display: block">
+        <img src="./img/dialog/box6.png" id="dialogImage" style="width:100%;">
+        <div class="centered" id="dialogText"></div>
+    </div>
+
     <div id="up" style="    padding: 20px;
     background-color: black;
     color: rgb(155,212,195);
@@ -86,41 +127,56 @@ height: 80;
 width: 65;"
 ><i style="align-self: center;"class="fa-solid fa-arrow-up fa-rotate-270 fa-2xl"></i></div>
 
+    
 
 
-    <div id="sideBar"style="
-    display: block;
-    background-color: black;
-    border-left: 2px solid black;"><a id="linkHome" href="home.html" style="color: rgb(187, 241, 225);">POCETNA STRANICA</a> <button id="sideBarButton" style="width: 100%; height: 30px;">OTVORI</button>
+    <img src="./img/home.png" id="homeicon" style="position: absolute; right: 10;"alt="">
+    <img src="./img/set.png" id="seticon" style="position: absolute; right: 85;"alt="">
+    <img src="./img/info.png" id="infoicon" style="position: absolute; right: 160;"alt="">
+    <img src="./img/soundON.png" id="soundicon" style="position: absolute; right: 235;"alt="">
 
-    <div id="sideBarBox" style="display: none; padding: 5px;">
-        <div style="display: none;" id="userInfo">
-        <p id="username">username</p>
-        <button id="logout" >log out</button>
-        <hr>
+    <div id="sideBar" style="background-color: rgb(207, 173, 132);
+        position: absolute;
+    top: 80;
+    right: 20;
+    width: 32%;
+    padding: 10;
+    border:  solid 2px rgba(232,207,166);
+    border-radius: 10px;
+    display: none;
+    color: rgb(25, 31, 39);
+    font-weight: bold;
+    ">
+    
+    <div id="userInfo" style="display: none;">
+        <p id="username">ime</p>
+        <button id="logout" class="setbut">ODJAVI SE</button>
+
         <p id="level">level</p>
-        <hr>
+ 
         <progress id="progres" value="32" max="100"> 32% </progress>
-        </div>
+    </div>
         <div id="generalInfo">
-            <p>odaberi podrucja s kojima ces igrati i njihove tezine (od 1 - 3): </p>
-            <hr>
-                <button id="z">zbrajanje</button> <input type="checkbox" id="z1" name="z" value="1"><input type="checkbox" id="z2" name="z" value="2"><input type="checkbox" id="z3" name="z" value="3"> <br>
-                <button id="o">oduzimanje</button> <input type="checkbox" id="o1" name="o" value="1"><input type="checkbox" id="o2" name="o" value="2"><input type="checkbox" id="o3" name="o" value="3"> <br>
-                <button id="m">mnozenje</button> <input type="checkbox" id="m1" name="m" value="1"><input type="checkbox" id="m2" name="m" value="2"><input type="checkbox" id="m3" name="m" value="3"> <br>
-                <button id="d">djeljenje</button> <input type="checkbox" id="d1" name="d" value="1"><input type="checkbox" id="d2" name="d" value="2"><input type="checkbox" id="d3" name="d" value="3"> <br>
-                <button id="r">razlomci</button> <input type="checkbox" id="r1" name="r" value="1"><input type="checkbox" id="r2" name="r" value="2"><input type="checkbox" id="r3" name="r" value="3"> <br>
-                <button id="p">postotci</button> <input type="checkbox" id="p1" name="p" value="1"><input type="checkbox" id="p2" name="p" value="2"><input type="checkbox" id="p3" name="p" value="3"> <br>
-                <button id="g">geometrija</button> <input type="checkbox" id="g1" name="g" value="1"><input type="checkbox" id="g2" name="g" value="2"><input type="checkbox" id="g3" name="g" value="3">
-                <hr>
-                <button id="submitTypes">Spremi postavke podrucja i tezina!</button>
-            <hr>
-            <button id="info">Kako igrati?</button>
+            <p>Odaberi lekcije koje želiš vježbati i njihove težine (od 1 - 3):</p>
+            <hr size="5" color= "RGB(232,207,166)" style="background-color: rgba(232,207,166); border-color: rgb(227, 199, 154);">
+            <div style="display: grid; grid-template-columns: 1fr 1fr;">
+            <div><button class="setbut" id="z">ZBRAJANJE</button> <input type="checkbox" id="z1" name="z" value="1"><input type="checkbox" id="z2" name="z" value="2"><input type="checkbox" id="z3" name="z" value="3"> <br>
+            </div>
+               <div> <button class="setbut"id="o">ODUZIMANJE</button> <input type="checkbox" id="o1" name="o" value="1"><input type="checkbox" id="o2" name="o" value="2"><input type="checkbox" id="o3" name="o" value="3"> <br>
+               </div>
+             <div> <button class="setbut"id="m">MNOŽENJE</button> <input type="checkbox" id="m1" name="m" value="1"><input type="checkbox" id="m2" name="m" value="2"><input type="checkbox" id="m3" name="m" value="3"> <br>
+             </div>  <div><button class="setbut" id="d">DJELJENJE</button> <input type="checkbox" id="d1" name="d" value="1"><input type="checkbox" id="d2" name="d" value="2"><input type="checkbox" id="d3" name="d" value="3"> <br>
+             </div>  <div><button class="setbut"id="r">RAZLOMCI</button> <input type="checkbox" id="r1" name="r" value="1"><input type="checkbox" id="r2" name="r" value="2"><input type="checkbox" id="r3" name="r" value="3"> <br>
+             </div>  <div><button class="setbut"id="p">POSTOTCI</button> <input type="checkbox" id="p1" name="p" value="1"><input type="checkbox" id="p2" name="p" value="2"><input type="checkbox" id="p3" name="p" value="3"> <br>
+             </div>  <div><button class="setbut"id="g">GEOMETRIJA</button> <input type="checkbox" id="g1" name="g" value="1"><input type="checkbox" id="g2" name="g" value="2"><input type="checkbox" id="g3" name="g" value="3"></div>
+        </div>
+            <hr size="5" color= "RGB(232,207,166)" style="background-color: rgba(232,207,166); border-color: rgb(227, 199, 154);">
+            <button id="submitTypes">Spremi postavke područja i težina!</button>
 
         </div>
+    
     </div>
-    </div>
-</div>
+    
    
 
     <div id="cancle" style="
@@ -140,7 +196,7 @@ width: 65;"
 
     <div id="question" style="    
     background-color: rgb(224, 192, 87);
-    height: 55%;
+    height: 45%;
     position: absolute;
     bottom: 250;
     left: 580;
@@ -220,9 +276,9 @@ width: 65;"
     margin: 5px;
     ">KRENI!</h1>
     </div>
-
-    
-
+<script src="data/npc.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>   
+<script src="data/audio.js" ></script>
 <script src="data/zoneNovo.js"></script>
 <script src="data/collisionsNovo.js"></script>
 <script src="classes.js"></script>

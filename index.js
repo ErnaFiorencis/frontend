@@ -3,14 +3,11 @@ const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
 console.log(window.innerWidth)
-canvas.width = 0.80 * window.innerWidth//1074 //1024
+canvas.width = 1100//0.80 * window.innerWidth//1074 //1024
 canvas.height = 0.96* window.innerHeight//580 //576
 console.log(canvas.width)
 
-const collisionsMap = []
-for(let i = 0; i < collisionsNovo.length; i+=64){
-   collisionsMap.push(collisionsNovo.slice(i, 64 + i))
-}
+
 
 
 const zoneMap = []
@@ -24,6 +21,13 @@ const offset = {
     x: -1250,
     y: -755
 }
+
+const collisionsMap = []
+
+for(let i = 0; i < collisionsNovo.length; i+=64){
+   collisionsMap.push(collisionsNovo.slice(i, 64 + i))
+}
+console.log(collisionsMap)
 
 const boundaries = []
 collisionsMap.forEach((row, i) => {
@@ -39,11 +43,13 @@ collisionsMap.forEach((row, i) => {
     }
     })
 })
+console.log(boundaries)
 
 const zones = []
 zoneMap.forEach((row, i) => {
     row.forEach((symbol, j) => {
-        if(symbol === 113 || symbol === 175){
+        //if(symbol === 113 || symbol === 175){
+        if(symbol != 0){
             zones.push(new Boundary({
                 position: {
                     x: j * Boundary.width + offset.x,
@@ -152,9 +158,11 @@ function checkLevel(level){
 }
 
 
+
+
 function animate(){
 
-    canvas.width =  0.80 * window.innerWidth//1074 //1024
+    canvas.width =  0.98 * window.innerWidth//1074 //1024
     canvas.height = 0.96* window.innerHeight//580 //576
     
     const animationId = window.requestAnimationFrame(animate)
@@ -187,20 +195,52 @@ function animate(){
             console.log("bakery")
         if(keys.space.pressed && lastKey == 'space'){
             keys.space.pressed = false
+            if(zone["symbol"] === 1075){
+                if(a){
+                    audio.Door.play()
+                }
+                
+                const number = Math.random() * (11 - 1) + 1 //min inclusive, max not
+                console.log(Math.floor(number))
+                window.document.getElementById("dialogContainer").style.display = "block"
+                window.document.getElementById("dialogImage").src = "./img/dialog/box" + Math.floor(number) + ".png"
+                window.document.getElementById("dialogText").innerHTML = npc[Math.floor(number)][Math.floor(Math.random() * 2)]
+                //window.document.getElementById("dialogImage").src = "./img/box4.png"
+                break   
+            }
+            else if(zone["symbol"] === 1019){
+                if(a){
+                    audio.Cow.play()
+                }
+                
+                window.document.getElementById("dialogContainer").style.display = "block"
+                window.document.getElementById("dialogImage").src = "./img/dialog/boxCow.png"
+    
+                window.document.getElementById("dialogText").innerHTML = npcCow[Math.floor(Math.random() * 3)]
+                break 
+            }
             console.log("activate zone")
             console.log(zone)
             z.initiated = true
             //console.log(zone.initiated)
+            audio.Map.stop()
             window.cancelAnimationFrame(animationId)
+            p = false
             document.getElementById("up").style.display  ="none"
             document.getElementById("down").style.display  ="none"
             document.getElementById("left").style.display  ="none"
             document.getElementById("right").style.display  ="none"
             document.getElementById("startBox").style.display = "block"
             document.getElementById("cancle").style.display = "block"
-            document.getElementById("sideBarDisplay").style.display = "block"
-            document.getElementById("sideBar").style.display = "none"
+            document.getElementById("homeicon").style.display = "none"
+            document.getElementById("seticon").style.display = "none"
+            document.getElementById("soundicon").style.display = "none"
+            document.getElementById("infoicon").style.display = "none"
+
+
             chooseZone(zone["symbol"])
+
+
             console.log("tu")
             break
         }
@@ -398,3 +438,65 @@ is_touch_enabled().then(e => {
     }
 })
 
+document.getElementById("exitDialog").addEventListener("click", () => {
+    document.getElementById("dialogContainer").style.display = "none"
+})
+
+document.getElementById("homeicon").addEventListener("mouseover", () =>{
+    document.getElementById("homeicon").src = "./img/home2.png"
+})
+document.getElementById("homeicon").addEventListener("mouseout", () =>{
+    document.getElementById("homeicon").src = "./img/home.png"
+})
+document.getElementById("homeicon").addEventListener("click", () => {
+    window.location.href = "home.html"
+})
+
+document.getElementById("seticon").addEventListener("mouseover", () =>{
+    document.getElementById("seticon").src = "./img/set2.png"
+})
+document.getElementById("seticon").addEventListener("mouseout", () =>{
+    document.getElementById("seticon").src = "./img/set.png"
+})
+
+document.getElementById("infoicon").addEventListener("mouseover", () =>{
+    document.getElementById("infoicon").src = "./img/info2.png"
+})
+document.getElementById("infoicon").addEventListener("mouseout", () =>{
+    document.getElementById("infoicon").src = "./img/info.png"
+})
+document.getElementById("infoicon").addEventListener("click", () => {
+    window.location.href = "howto.html"
+})
+
+document.getElementById("soundicon").addEventListener("mouseover", () =>{
+    document.getElementById("soundicon").src = (a ? "./img/soundOFF1.png" : "./img/soundON1.png")
+})
+document.getElementById("soundicon").addEventListener("mouseout", () =>{
+    document.getElementById("soundicon").src = (a ? "./img/soundOFF.png" : "./img/soundON.png")
+})
+
+document.getElementById("soundicon").addEventListener("click", () =>{
+    if(!a){
+        a = true
+        p = true
+        audio.Map.play()
+        document.getElementById("soundicon").src = "././img/soundOFF.png"
+    }
+    else{
+        a = false
+        audio.Map.stop()
+        document.getElementById("soundicon").src = "././img/soundON.png"
+    }
+})
+
+var a = false
+let p = false
+
+addEventListener("keydown", () => {
+    console.log(p)
+    if(a == true & p == false){
+        p = true
+        audio.Map.play()
+    }
+})

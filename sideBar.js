@@ -40,18 +40,16 @@ function openSideBar(){
         });
         localStorage.setItem("category", '{"z":["1","2","3"],"o":["1","2","3"],"m":["1","2","3"],"d":["1","2","3"],"r":["1","2","3"],"p":["1","2","3"],"g":["1","2","3"]}')
     }
-    document.getElementById("sideBar").style.backgroundColor = "white"
-    document.getElementById("sideBarBox").style.display = "block"
-    document.getElementById("linkHome").style.color= "black"
-    document.getElementById("sideBarButton").innerHTML = "ZATVORI"
 
     document.getElementById("up").style.right = '195'
     document.getElementById("right").style.right = '260'
 }
 
-document.getElementById("sideBarButton").addEventListener("click", () =>{
-    if(document.getElementById("sideBarButton").innerHTML === "OTVORI"){
-        openSideBar()
+
+
+document.getElementById("seticon").addEventListener("click", () =>{
+    if(document.getElementById("sideBar").style.display == "none"){
+        document.getElementById("sideBar").style.display = "block"
         if(localStorage.getItem("user")){
             fetch("http://localhost:3000/api/v1/students/name", {
                 method: "GET",
@@ -70,7 +68,7 @@ document.getElementById("sideBarButton").addEventListener("click", () =>{
                 }
             }).then(data => {
                 console.log(data[0])
-                document.getElementById("username").innerHTML = "user: " + (data[0]["user_name"]).toUpperCase()
+                document.getElementById("username").innerHTML = "ime: " + (data[0]["user_name"]).toUpperCase()
                 let level = Math.floor(((Math.sqrt(1 + 8 * parseInt(data[0]["points"]) / 100)) - 1) / 2) + 1
                 console.log(level)
                 document.getElementById("level").innerHTML = "LEVEL: " + level
@@ -115,7 +113,7 @@ document.getElementById("sideBarButton").addEventListener("click", () =>{
 
     }
     else{
-        closeSideBar()
+        document.getElementById("sideBar").style.display = "none"
     }
     if(localStorage.getItem("user")){
         document.getElementById("userInfo").style.display = "block"    

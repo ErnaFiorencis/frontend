@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="admin.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        *{
+            font-family: 'Pangolin', cursive;
+        }
+        body{
+            background-color: rgb(25, 31, 39);
+        }
+
+        .answers{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .home-container{
+	display: flex;
+	align-items: center;
+}
+
+.icon{
+	width: 40px;
+	height: auto;
+}
+h1{
+        margin: 20px;
+        color: rgb(192,212,112);
+    }
+
+a, h2, p, label{
+    color:  rgb(155,212,195);
+}
+    select{
+        margin: 10px;
+    }
+    </style>
+</head>
+<body>
+    <div class="home-container">
+		<img src="./img/rabbit.png" alt="" class="icon">
+		<a href="admin.html" class="" style="margin-right: 20px;">Dodaj novo pitanje</a>
+        <a href="admin2.html" class="" style="margin-right: 20px;">Dodaj novu kategoriju pitanja</a>
+        <a href="admin3.html" class="" style="margin-right: 20px;">Prati napredak učenika</a>
+        <button id="logout">LOGOUT</button>
+	</div>
+    <hr>
+        <h1 class="naslov">Potraži informacije o korisniku: </h1>
+        <form id="questions">
+            <label for="category">Upisi korisničko ima ili email-adresu: </label>
+            <input type="text" id="category" name="category" required>
+            <input type="submit" id="submit" value="Predaj">
+        </form>
+</body>
+</html>

@@ -11,12 +11,14 @@ const zoneBackground = new Sprite ({
 
 let zoneAnimationID
 
+
+
 function chooseZone(symbol){
     canvas.style.backgroundColor = 'rgba(104,87,70,255)'
     canvas.width = 1174//0.80 * window.innerWidth//1074 //1024
     canvas.height = 600
     if(window.innerWidth > 1174){
-        canvas.width = 0.9 * window.innerWidth
+        canvas.width = 0.98 * window.innerWidth
         
     }
     if(window.innerHeight > 600){
@@ -26,16 +28,36 @@ function chooseZone(symbol){
     console.log(symbol)
     symbol = symbol
     if(symbol == 113){
+        console.log("pekara")
         zoneImage.src = './img/pozadina.png'
         zoneImage.style.width = '100px'
         zoneImage.style.height = '100px'
         place = "bakery"
+        animateZone()
     }
+    else if(symbol == 182){
+        console.log("farma")
+        zoneImage.src = './img/pozadina.png'
+        zoneImage.style.width = '100px'
+        zoneImage.style.height = '100px'
+        place = "bakery"
+        animateZone()
+    }
+    else if(symbol == 1000){
+        console.log("pošta")
+        zoneImage.src = './img/pozadina.png'
+        zoneImage.style.width = '100px'
+        zoneImage.style.height = '100px'
+        place = "bakery"
+        animateZone()
+    }
+
     else{
         zoneImage.src = './img/rabbit.png'
         window.location.href = "achievements.html"
     }
-    animateZone()
+    
+    
 }
 
 function animateZone(){
@@ -123,8 +145,11 @@ function closeZone(){
     document.getElementById("startBox").style.display = "none"
     document.getElementById("cancle").style.display = "none"
     document.getElementById("endBox").style.display = "none"
-    document.getElementById("sideBarDisplay").style.display = "flex"
-    document.getElementById("sideBar").style.display = "block"
+
+    document.getElementById("homeicon").style.display = "block"
+    document.getElementById("seticon").style.display = "block"
+    document.getElementById("soundicon").style.display = "block"
+            document.getElementById("infoicon").style.display = "block"
     cancelAnimationFrame(zoneAnimationID)
     numberOfQuestions = 0
     z.initiated = false
@@ -184,8 +209,9 @@ function evaluateAnswer(answer){
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
+                    Authorization: 'Bearer ' + localStorage.getItem("user")
                 },
-                body: JSON.stringify({user, points})
+                body: JSON.stringify({points})
             })
             let category = question_data["category"]
             fetch("http://localhost:3000/api/v1/achivments/update", {
@@ -193,8 +219,9 @@ function evaluateAnswer(answer){
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
+                    Authorization: 'Bearer ' + localStorage.getItem("user")
                 },
-                body: JSON.stringify({user, category})
+                body: JSON.stringify({category})
             }).then((res) => res.json()).then((data) =>{
                 if(data.length > 0){
                     alert("Čestitam! Ostvario si postignuće: " + data[0]["achievement_name"])

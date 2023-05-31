@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+<style>
+    * {
+        font-family: 'Pangolin', cursive; 
+    }
+    body{
+        font-family: 'Pangolin', cursive;
+        background-color: rgb(25, 31, 39);
+    }
+        a, p{
+            color:  rgb(155,212,195);
+            margin: 5px;
+            font-size: 1.4rem;
+        }
+        h1, h2, label{
+            color:  rgb(192,212,112);   
+            margin: 5px;    
+        }
+        .icon{
+            width: 40px;
+            height: auto;
+        }
+        .home-container{
+            display: flex;
+            align-items: center;
+        }
+
+        input{
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="home-container">
+		<img src="./img/rabbit.png" alt="" class="icon">
+		<a href="home.html" class="home" style="margin-right: 20px;">POČETNA STRANICA</a>
+        <a href="index.html" class="home">NAZAD U IGRU</a>
+	</div>
+    <hr>
+    <div class="pravila">
+        <h1>Prvi put igraš igru ili se samo želiš prijsjetiti osnova? Nastavi Čitati!</h1>
+
+        <h2 style="margin-top: 20px;">KRETANJE</h2>
+        <p style="margin-top: 20px;">Ako imaš tipkovnicu za šetnju gradom iskoristi tipke W, A, S i D </p>
+        <p>A ako tvoj uređaj ima zaslon na dodir posluži se strelicama u doljnjim kutevima ekrana</p>
+
+
+        <h2 style="margin-top: 20px;">POKRETANJE ZADATAKA</h2>
+        <p style="margin-top: 20px;">Došeći sa svojim zekom sve do kuće koja u dvorištu ima oznake strelica te opali enter ako imaš tipkovnicu, a ako imaš zaslon na dodir samo dotakni ekran </p>
+        <p>Potom češ se nači u okruženju kuće u koju si ušao gdje te čekaju detaljnije upute o igri koja se nalazi unutar</p>
+        <h2 style="margin-top: 20px;">SKUPLJANJE BODOVA</h2>
+        <p style="margin-top: 20px;">Kako bi skupljao bodove, pobrini se da si <a href="login.html">prijavljen</a></p>
+        <p>Nakon svakog točno riješenog zadataka bit će ti prikazano koliko si bodova ostvario</p>
+        <p>Skupljaj što više bodova kako bi prešao na više razine, jer s višim razinama se otključavaju novi otoci koje možeš istražiti!</p>
+        <p>Možeš ostvariti i različita postignuća, ako rijšiš dovoljno zadataka u nekoj kategoriji, svoja postignuća skupljaš u obliku medalja u svojoj kući</p>
+        <h2 style="margin-top: 20px;">REGISTRACIJA i PRIJAVA</h2>
+        <p style="margin-top: 20px;">Za registraciju ti je jedino potrebna email adresa te moraš osmisliti jedinstveno ime koje će biti tvoj nadimak u igri i zaporku s kojoj češ se kasnije prijavljivati u igru</p>
+        <h2 style="margin-top: 20px;">ZANIMA TE NEŠTO ŠTO NIJE NAVEDENO</h2>
+        <p style="margin-top: 20px;">Ispuni ovo formu i javiti ću ti se u najkračem mogućem roku s odgovorima :)</p>
+        <form action="https://public.herotofu.com/v1/140964f0-fa49-11ed-b2e2-c10354b56774" method="post" accept-charset="UTF-8">
+            <div>
+              <label for="name">Tvoje korisničko ime</label>
+              <input name="Name" id="name" type="text"/>
+            </div>
+            <div>
+              <label for="email">Tvoja email adresa</label>
+              <input name="Email" id="email" type="email" required  />
+            </div>
+            <div>
+                <label for="email">Tvoje pitanj ili poruka</label>
+                <textarea name="pitanje" id="pitanje" cols="100" rows="3"></textarea>
+              </div>
+            <div>
+              <input type="submit" value="Pošalji!" />
+              <div style="text-indent:-99999px; white-space:nowrap; overflow:hidden; position:absolute;" aria-hidden="true">
+                <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+              </div>
+            </div>
+          </form>
+
+    </div>
+</body>
+</html>
